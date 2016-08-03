@@ -1,0 +1,1 @@
+json.partial! "member_tasks/member_task", member_task: @member_task

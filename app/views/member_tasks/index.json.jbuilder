@@ -1,0 +1,1 @@
+json.array! @member_tasks, partial: 'member_tasks/member_task', as: :member_task
