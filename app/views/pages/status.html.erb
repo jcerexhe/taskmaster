@@ -1,0 +1,8 @@
+<h1>Pages#status</h1>
+<p>Find me in app/views/pages/status.html.erb</p>
+
+<ul>
+<% @assigned_tasks.each do |t| %>
+  <li><%= t.member.name %> is doing <%= t.task.name %></li>
+<% end %>
+</ul>
