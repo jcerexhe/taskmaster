@@ -1,20 +1,18 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
-  def new_assign_task
-
+  def update_member_task
+    @member_task = MemberTask.find(params[:id])
   end
 
   def assign_task
-    @task_member = TaskMember.new
-
     respond_to do |format|
-      if @task_member.save
-        format.html { redirect_to @task_member, notice: 'Task Member was successfully created.' }
-        format.json { render :show, status: :created, location: @task_member }
+      if @member_task.update(member_task_params)
+        format.html { redirect_to root_path, notice: 'Member Task was successfully updated.' }
+        format.json { render :show, status: :ok, location: @member_task }
       else
-        format.html { render :new }
-        format.json { render json: @task_member.errors, status: :unprocessable_entity }
+        format.html { render :edit }
+        format.json { render json: @member_task.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -74,5 +72,9 @@ class TasksController < ApplicationController
 
     def task_params
       params.require(:task).permit(:name, :location, :comment)
+    end
+
+    def member_task_params
+      params.require(:task).permit(:member_id, :task_id, :task_type)
     end
 end

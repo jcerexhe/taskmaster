@@ -1,0 +1,29 @@
+<%= simple_form_for(@member_task, url: update_member_task_path, method: :patch) do |f| %>
+  <% if @member_task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@member_task.errors.count, "error") %> prohibited this @member_task from being saved:</h2>
+
+      <ul>
+      <% @member_task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.association :member %>
+  </div>
+
+  <div class="field">
+    <%= f.association :task %>
+  </div>
+
+  <div class="field">
+    <%= f.input :task_type, collection: ["Current Task", "Next Task"] %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
